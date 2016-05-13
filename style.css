@@ -1,0 +1,18 @@
+.btn-primary{
+	background: #6A1B9A;
+}
+
+label {
+	box-shadow: 10px 10px 5px #888888;
+}
+
+h1{
+	font-family: 'Orbitron', sans-serif;
+	font-weight: 900;
+	font-size:50;
+	color: #FFF;
+}
+
+.title{
+	background:#6A1B9A
+}
