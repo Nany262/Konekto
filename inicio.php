@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 	<title>Konekto</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="statics/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Orbitron:400,900' rel='stylesheet' type='text/css'>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -19,10 +24,6 @@
 		echo "No se puede conectar";
 		exit();
 	}
-?>
-
-<?php
-
 //CONFIRMACION DE QUE EL USUARIO ESTE EN LA BASE DE DATOS
 
 if (isset($_POST["datos"])){
@@ -38,10 +39,7 @@ if (isset($_POST["datos"])){
 		session_destroy(); //cancela procesos
 		header("Location: http://localhost/Konekto/index.php");// envia de nuevo a la pagina index
 	}
-	else
-		{echo ":P";}
 }
-
 ?>
 
 </body>

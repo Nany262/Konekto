@@ -1,9 +1,17 @@
 .btn-primary{
 	background: #6A1B9A;
+	border-color: #4A148C;
+}
+
+.btn-primary:hover {
+	background-color: #CE93D8;
+	color: #FFF;
+	border-color: #4A148C;
 }
 
 label {
 	box-shadow: 10px 10px 5px #888888;
+
 }
 
 h1{
