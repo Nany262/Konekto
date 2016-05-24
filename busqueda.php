@@ -126,7 +126,7 @@ echo "<div class='row'>
 					<input type='hidden' name='i' value=$i>
 				</form>
 				<h4>".$filafoto[1]."</h4>
-				<img src='imagen.php?id=$filafoto[0]' width='950' height='540'>
+				<img src='imagen.php?id=$filafoto[0]' width='900' height='540'>
 			</div>
 		</div>";
 	
@@ -135,22 +135,22 @@ else{
 	header("Location: inicio.php");
 }
 
-$instruccion="SELECT `Id_usuario` FROM `usuarios` WHERE `Correo`='$correo'";
-$resultado=mysqli_query($conexion,$instruccion);
-$filaaux=mysqli_fetch_row($resultado);
-
-if (isset($_GET["enviar"])){
+/*if (isset($_GET["enviar"])){
 	$correo=$_GET["correo"];
 	$texto=$_GET["comentario"];
 
+	$instruccion="SELECT `Id_usuario` FROM `usuarios` WHERE `Correo`='$correo'";
+	$resultado=mysqli_query($conexion,$instruccion);
+	$filaaux=mysqli_fetch_row($resultado);
+
 	if ($filaaux!=NULL){
 		$instruccion="INSERT INTO `comentarios`(`Texto`, `Id_usuario`, `Id_receptor`, `Id_Foto`) VALUES ('$texto','$usuario','$filaaux[0]','$filafoto[0]')";
-		//$resultado=mysqli_query($conexion,$instruccion);
+			$resultado=mysqli_query($conexion,$instruccion);
 	}
 	else{
 		echo "<div class='container'><font size=3>No se pudo enviar su comentario</font></div>";
 	}	
-}
+}*/
 ?>
 					<div class='col-md-3'>
 						<h4><br>Descripción<br></h4>
@@ -158,24 +158,25 @@ if (isset($_GET["enviar"])){
 							echo $filafoto[2];
 						?>
 						<h4><br>Envia un comentario<br></h4>
-						<form action="busqueda.php" method="get">
+						<form action="comentario.php" method="get">
 			    			<textarea type="text" name="comentario" rows="3" cols="35" placeholder="Escribe un comentario..." required></textarea><br>
-			    			<input type="hidden" name="correo" value=<?php echo $correo?>>
+			    			<input type="hidden" name="correo" value=<?php echo $correo ?> >
+			    			<input type="hidden" name="filafoto" value=<?php echo $filafoto[0] ?> >
 			    			<br><button class="btn btn-primary" name="enviar">Enviar</button>
 						</form>
 						<h4><br>Comentarios<br></h4>
 						<?php
-						$instruccion="SELECT `Texto`, `Id_usuario` FROM `comentarios` WHERE `Id_Foto`='$filafoto[0]' and `Id_receptor`='$filaaux[0]'";
-						$resultado=mysqli_query($conexion,$instruccion);
-						if($resultado!=NULL){
-							while($comentar=mysqli_fetch_row($resultado)){
-								$instruccion="SELECT `Nombre`, `Nick` FROM `usuarios` WHERE `Id_usuario`='$comentar[1]'";
-								$resultadocom=mysqli_query($conexion,$instruccion);
-								$comento=mysqli_fetch_row($resultadocom);
-								echo "<h5>".$comento[0]."(".$comento[1].")</h5>".$comentar[0];
+							$instruccion="SELECT `Texto`, `Id_usuario` FROM `comentarios` WHERE `Id_Foto`='$filafoto[0]' and `Id_receptor`='$fila[0]'";
+							$resultado=mysqli_query($conexion,$instruccion);
+							if($resultado!=NULL){
+								while($comentar=mysqli_fetch_row($resultado)){
+									$instruccion="SELECT `Nombre`, `Nick` FROM `usuarios` WHERE `Id_usuario`='$comentar[1]'";
+									$resultadocom=mysqli_query($conexion,$instruccion);
+									$comento=mysqli_fetch_row($resultadocom);
+									echo "<h5>".$comento[0]."(".$comento[1].")</h5>".$comentar[0];
+								}
 							}
-						}
-						mysqli_close($conexion);
+							mysqli_close($conexion);
 						?>
 				</div>
 			</div>
