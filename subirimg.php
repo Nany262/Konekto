@@ -34,7 +34,7 @@ else {
     $instruccion="INSERT INTO `fotografias`(`Foto`, `Nombre`, `Descripcion`,`Id_usuario`) VALUES ('$data','$nom','$desc','$usuario')";
         $resultado = mysqli_query($conexion,$instruccion);
         if ($resultado){
-            header("Location: inicio.php");// envia de nuevo a la pagina inicio
+            header("Location: subir_imagenes.php");// envia de nuevo a la pagina opcionimagen
         } else {
             header("Location: inicio.php?error=2");
         }
@@ -43,4 +43,5 @@ else {
         header("Location: inicio.php?error=2");
     }   
 }
+mysqli_close($conexion);
 ?>

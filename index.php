@@ -33,7 +33,7 @@ if (isset($_POST["datos"])){
 	$correo=$_POST["correo"];
 	$pass=$_POST["pass"];
 //Instruccion de verificacion y consulta
-	$instruccion="SELECT `Id_Usuario`,`Correo`,`Clave` FROM `usuarios` WHERE `Correo`='$correo' and `Clave`='$pass'";
+	$instruccion="SELECT `Id_Usuario`,`Entradas` FROM `usuarios` WHERE `Correo`='$correo' and `Clave`='$pass'";
 	$resultado=mysqli_query($conexion,$instruccion);
 	$fila=mysqli_fetch_row($resultado);
 //Si en la base de datos no existe el usuario se devuelve a la pagina de index.php
@@ -42,7 +42,11 @@ if (isset($_POST["datos"])){
 	}
 	else{
 		$_SESSION["usuario"] = $fila[0];
-		header("Location: inicio.php");// envia de nuevo a la pagina index
+		$entrada=$fila[1]+1;
+		$instruccion="UPDATE `usuarios` SET `Entradas`='$entrada' WHERE `Id_usuario`='$fila[0]'";
+		$resultado=mysqli_query($conexion,$instruccion);
+
+		header("Location: inicio.php");// envia a la pagina de inicio
 	}
 }
 ?>
@@ -73,12 +77,13 @@ if (isset($_POST["registro"])){
 	if ($fila==NULL){
 		$instruccion="INSERT INTO `usuarios`(`Activo/Inactivo`, `Correo`, `Nombre`, `Nick`, `Clave`) VALUES (1,'$correo','$nom','$nick','$pass')";
 		$resultado=mysqli_query($conexion,$instruccion);
+		echo "<h4>Ya ha sido registrado</h4>";
 	}
 	else{
 		echo "<div class='container'><font size=5>El usuario ya se encuentra registrado</font></div>";
 	}	
 }
-
+mysqli_close($conexion);
 ?>
 
 </body>

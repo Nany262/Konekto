@@ -1,3 +1,13 @@
+
+th{
+	text-align: center;
+	font-family: 'Orbitron', sans-serif;
+}
+
+td{
+	text-align: center;
+}
+
 .btn-primary{
 	background: #6A1B9A;
 	border-color: #4A148C;
@@ -11,7 +21,6 @@
 
 label {
 	box-shadow: 10px 10px 5px #888888;
-
 }
 
 h1{
@@ -21,6 +30,47 @@ h1{
 	color: #FFF;
 }
 
+h3{
+	font-family: 'Orbitron', sans-serif;
+	font-weight: 900;
+	font-size:30;
+	color: #FFF;
+}
+
+h4{
+	font-family: 'Orbitron', sans-serif;
+	font-size:20;
+}
+
+h5{
+	font-family: 'Orbitron', sans-serif;
+	color: #9C27B0;
+	font-weight: 900;
+}
+
+h6{
+	font-family: 'Orbitron', sans-serif;
+	font-size:30;
+}
+
 .title{
-	background:#6A1B9A
+	
+	background:#6A1B9A;
+}
+
+.usuario{
+	font-family: 'Orbitron', sans-serif;
+}
+
+body {
+		background-color: #F3E5F5;
+	}
+
+.p{
+	font-family: 'Orbitron', sans-serif;
+}
+
+p{
+	font-size:30;
+	text-align: center;
 }
