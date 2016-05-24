@@ -45,6 +45,7 @@ echo "<div class='container-fluid title'>
         <button class="btn btn-default" name="busca">Buscar</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
+      	<li><a title="Actualizar" href="actualizar.php">Actualizar Datos</a></li>
         <li><a title="Cerrar" href="cerrar.php">Cerrar Sesión</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -58,10 +59,9 @@ function amigos($fila){
 	$usuario=$_SESSION["usuario"];
 	$instruccion = "SELECT `Id_friend` FROM amigos WHERE Id_usuario='$usuario'";
 	$resultado=mysqli_query($conexion,$instruccion);
-	//$fila=mysqli_fetch_row($resultado);
 	$tmp=0;
 	while($filaf=mysqli_fetch_row($resultado)){
-		if($filaf[0]==$fila[0]){
+		if($filaf[0]==$fila[0] || $fila[0]==$usuario){
 			$tmp=1;
 			return ($tmp);
 		}
@@ -110,47 +110,34 @@ if ($fila!=NULL){
 	}
 
 
-$instruccion = "SELECT `Id_Foto`,`Nombre`,`Descripcion` FROM fotografias WHERE Id_usuario='$fila[0]'";
-$resultado=mysqli_query($conexion,$instruccion);
-$size=sizeof($fila);
-$i=cambiaid($size);
-mysqli_data_seek($resultado,$i);
-$filafoto=mysqli_fetch_row($resultado);
-echo "<div class='row'>
-		<div class='col-md-9'>
-			<div class='container'>
-				<form action='busqueda.php' method='get'>
-					<button class='btn btn-primary' name='anterior'>Anterior</button>
-					<button class='btn btn-primary' name='siguiente'>Siguiente</button>
-					<input type='hidden' name='correo' value='$correo'>
-					<input type='hidden' name='i' value=$i>
-				</form>
-				<h4>".$filafoto[1]."</h4>
-				<img src='imagen.php?id=$filafoto[0]' width='900' height='540'>
-			</div>
-		</div>";
-	
+	$instruccion = "SELECT `Id_Foto`,`Nombre`,`Descripcion` FROM fotografias WHERE Id_usuario='$fila[0]'";
+	$resultado=mysqli_query($conexion,$instruccion);
+	$size=sizeof($fila);
+	$i=cambiaid($size);
+	mysqli_data_seek($resultado,$i);
+	$filafoto=mysqli_fetch_row($resultado);
+	echo "<div class='row'>
+			<div class='col-md-9'>
+				<div class='container-fluid'>
+					<form action='busqueda.php' method='get'>
+						<button class='btn btn-primary' name='anterior'>Anterior</button>
+						<button class='btn btn-primary' name='siguiente'>Siguiente</button>
+						<input type='hidden' name='correo' value='$correo'>
+						<input type='hidden' name='i' value=$i>
+					</form>";
+	if($filafoto!=NULL){
+				echo"<h4>".$filafoto[1]."</h4>
+					<img src='imagen.php?id=$filafoto[0]' width='900' height='540'>
+				</div>
+			</div>";
+	}
+	else
+	{echo "<br><center><h4>".$fila[1]." (".$fila[2].")"." no ha subido fotos</h4></center></div></div>";}
 }
+	
 else{
 	header("Location: inicio.php");
 }
-
-/*if (isset($_GET["enviar"])){
-	$correo=$_GET["correo"];
-	$texto=$_GET["comentario"];
-
-	$instruccion="SELECT `Id_usuario` FROM `usuarios` WHERE `Correo`='$correo'";
-	$resultado=mysqli_query($conexion,$instruccion);
-	$filaaux=mysqli_fetch_row($resultado);
-
-	if ($filaaux!=NULL){
-		$instruccion="INSERT INTO `comentarios`(`Texto`, `Id_usuario`, `Id_receptor`, `Id_Foto`) VALUES ('$texto','$usuario','$filaaux[0]','$filafoto[0]')";
-			$resultado=mysqli_query($conexion,$instruccion);
-	}
-	else{
-		echo "<div class='container'><font size=3>No se pudo enviar su comentario</font></div>";
-	}	
-}*/
 ?>
 					<div class='col-md-3'>
 						<h4><br>Descripción<br></h4>

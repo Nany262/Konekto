@@ -67,6 +67,7 @@ echo "<div class='container-fluid title'>
 	        <button class="btn btn-default" name="busca">Buscar</button>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a title="Actualizar" href="actualizar.php">Actualizar Datos</a></li>
 	        <li><a title="Cerrar" href="cerrar.php">Cerrar Sesión</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->

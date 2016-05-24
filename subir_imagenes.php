@@ -83,6 +83,7 @@ mysqli_close($conexion);
 	        <button class="btn btn-default" name="busca">Buscar</button>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a title="Actualizar" href="actualizar.php">Actualizar Datos</a></li>
 	        <li><a title="Cerrar" href="cerrar.php">Cerrar Sesión</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
@@ -95,7 +96,7 @@ mysqli_close($conexion);
 			<form action="subirimg.php" method="post" enctype="multipart/form-data">
 		    	<input type="file" name="foto"><br>
 		    	<input class="form-control" type="text" name="nombre" placeholder="Nombre" pattern="{1,20}" required><br>
-		    	<textarea type="text" name="descripcion" rows="2" cols="85" placeholder="Descripcion"></textarea><br>
+		    	<textarea type="text" name="descripcion" rows="2" cols="75" placeholder="Descripcion"></textarea><br>
 		    	<br><button class="btn btn-primary" name="imagen">Subir Fotos</button>
 		    </form>
 		</div>
